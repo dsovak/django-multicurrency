@@ -1,0 +1,84 @@
+from django.conf import settings
+
+# Minimal Django settings for test purposes
+SECRET_KEY = 'test-secret-key'
+INSTALLED_APPS = [
+    'django.contrib.contenttypes',
+    'django.contrib.auth',
+    'djmoney',
+    'multicurrency',  # Register the main app for model discovery
+]
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',
+    }
+}
+USE_TZ = True
+DEBUG = False
+
+########## CURRENCY SETTINGS
+CURRENCY_EUR = 'EUR'
+CURRENCY_CZK = 'CZK'
+CURRENCY_HUF = 'HUF'
+CURRENCY_PLN = 'PLN'
+CURRENCY_RON = 'RON'
+CURRENCY_GBP = 'GBP'
+CURRENCY_BGN = 'BGN'
+
+CURRENCY_CHOICES = [
+    (CURRENCY_EUR, 'EUR'),
+    (CURRENCY_CZK, 'CZK'),
+    (CURRENCY_HUF, 'HUF'),
+    (CURRENCY_PLN, 'PLN'),
+    (CURRENCY_RON, 'RON'),
+    (CURRENCY_GBP, 'GBP'),
+    (CURRENCY_BGN, 'BGN'),
+]
+
+CURRENCY_SIGNS = {
+    CURRENCY_EUR: '€',
+    CURRENCY_CZK: 'Kč',
+    CURRENCY_HUF: 'ft',
+    CURRENCY_PLN: 'zł',
+    CURRENCY_RON: 'lei',
+    CURRENCY_GBP: '£',
+    CURRENCY_BGN: 'лв'
+}
+
+SOURCE_ECB = 'ECB'
+SOURCE_CNB = 'CNB'
+SOURCE_NBP = 'NBP'
+SOURCE_MNB = 'MNB'
+SOURCE_RNB = 'RNB'
+SOURCE_BOE = 'BOE'
+
+EXCHANGE_RATES_SOURCES = [
+    (SOURCE_ECB, 'ECB'),
+    (SOURCE_CNB, 'CNB'),
+    (SOURCE_NBP, 'NBP'),
+    (SOURCE_MNB, 'MNB'),
+    (SOURCE_RNB, 'RNB'),
+    (SOURCE_BOE, 'BOE')
+]
+
+CURRENCY_RATE_SOURCES = {
+    CURRENCY_EUR: SOURCE_ECB,
+    CURRENCY_CZK: SOURCE_CNB,
+    CURRENCY_PLN: SOURCE_NBP,
+    CURRENCY_HUF: SOURCE_MNB,
+    CURRENCY_RON: SOURCE_RNB,
+    CURRENCY_GBP: SOURCE_BOE
+}
+
+NATIONAL_BANKS = {
+    "SK": SOURCE_ECB,
+    "CZ": SOURCE_CNB,
+    "HU": SOURCE_MNB,
+    "PL": SOURCE_NBP,
+    "RO": SOURCE_RNB,
+    "GB": SOURCE_BOE
+}
+
+AVAILABLE_RATE_SOURCES = [SOURCE_ECB, SOURCE_CNB, SOURCE_NBP]
+BASE_CURRENCY = CURRENCY_EUR
