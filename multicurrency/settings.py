@@ -1,19 +1,3 @@
-from django.conf import settings
-
-# Minimal Django settings for test purposes
-SECRET_KEY = 'test-secret-key'
-INSTALLED_APPS = [
-    'django.contrib.contenttypes',
-    'django.contrib.auth',
-    'djmoney',
-    'multicurrency',  # Register the main app for model discovery
-]
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': ':memory:',
-    }
-}
 USE_TZ = True
 DEBUG = False
 
