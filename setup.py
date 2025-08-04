@@ -3,7 +3,10 @@ from setuptools import setup, find_packages
 setup(
     name="django-multicurrency",
     version="0.1.0",
-    packages=find_packages(),
+    packages=[
+        'multicurrency',
+        'multicurrency.migrations'
+    ],
     install_requires=[
         "django>=3",
         "django-money>=3.0",
